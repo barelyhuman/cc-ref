@@ -7,6 +7,7 @@ export function useVariationLevels(exercise, level) {
   );
 
   return {
+    step: step,
     levels: step.steps,
   };
 }

@@ -1,0 +1,61 @@
+---
+import Layout from "./Layout.astro";
+
+const props = Astro.props;
+---
+
+<Layout {...props}>
+  <style is:global>
+    body {
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 400;
+      line-height: 1.75;
+    }
+
+    . mdx-post p {
+      margin-bottom: 1rem;
+    }
+
+    .mdx-post h1,
+    .mdx-post h2,
+    .mdx-post h3,
+    .mdx-post h4,
+    .mdx-post h5 {
+      margin: 3rem 0 1.38rem;
+      font-family: "IBM Plex Sans", sans-serif;
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .mdx-post h1 {
+      margin-top: 0;
+      font-size: 3.052rem;
+    }
+
+    .mdx-post h2 {
+      font-size: 2.441rem;
+    }
+
+    .mdx-post h3 {
+      font-size: 1.953rem;
+    }
+
+    .mdx-post h4 {
+      font-size: 1.563rem;
+    }
+
+    .mdx-post h5 {
+      font-size: 1.25rem;
+    }
+
+    .mdx-post small,
+    .mdx-post .text_small {
+      font-size: 0.8rem;
+    }
+  </style>
+  <main
+    class="mdx-post mx-auto max-w-screen-md pt-20 pb-16 sm:px-safe px-4 sm:pb-0"
+  >
+    <slot />
+  </main>
+</Layout>

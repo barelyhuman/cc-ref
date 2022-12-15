@@ -27,16 +27,19 @@ export function getStaticPaths() {
 }
 
 const { exercise, level } = Astro.params;
-const { levels } = useVariationLevels(exercise, level);
+const { step, levels } = useVariationLevels(exercise, level);
 ---
 
 <Layout>
   <div class="flex-1 bg-zinc-900 items-center">
+    <div class="px-3 sm:px-safe py-4 text-xl font-bold text-zinc-200">
+      <h1>{step.name}</h1>
+    </div>
     <div
       class="flex px-3 py-4 w-full flex-row border-b border-zinc-700 justify-between items-center"
     >
-      <p class="text-zinc-600">Level</p>
-      <p class="text-zinc-600">Rep Range</p>
+      <p class="text-zinc-400">Level</p>
+      <p class="text-zinc-400">Rep Range</p>
     </div>
     {
       Object.keys(levels).length > 0 &&
