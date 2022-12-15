@@ -1,0 +1,18 @@
+---
+import { PressableItem } from "../components/pressable";
+import { useExercises } from "../hooks/use-exercises";
+import { Header } from "../components/header";
+import Layout from "../layouts/Layout.astro";
+
+const { exercises } = useExercises();
+---
+
+<Layout>
+  <div class="flex-1 bg-zinc-900">
+    {
+      exercises.map((item) => (
+        <PressableItem title={item.label} href={`/${item.id}`} />
+      ))
+    }
+  </div>
+</Layout>

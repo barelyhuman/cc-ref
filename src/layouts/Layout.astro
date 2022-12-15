@@ -1,0 +1,176 @@
+---
+import { Header } from "../components/header";
+
+const { frontmatter, url } = Astro.props;
+---
+
+<html>
+  <head>
+    <!-- <meta rel="canonical" href={new URL(url, Astro.site).pathname} /> -->
+    <title>{(frontmatter && frontmatter.title) || "CC Ref"}</title>
+    <style is:global>
+      /* typography */
+      html {
+        font-size: 87.5%;
+      } /*16px*/
+
+      body {
+        font-weight: 400;
+        line-height: 1.75;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        max-width: 85ch;
+        margin: 0 auto;
+        padding: 16px;
+        @apply bg-zinc-900 text-zinc-400;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5 {
+        margin: 3rem 0 1.38rem;
+        font-family: "Arimo", sans-serif;
+        font-weight: 400;
+        line-height: 1.3;
+      }
+
+      h1 {
+        margin-top: 0;
+        font-size: 3.052rem;
+      }
+
+      h2 {
+        font-size: 2.441rem;
+      }
+
+      h3 {
+        font-size: 1.953rem;
+      }
+
+      h4 {
+        font-size: 1.563rem;
+      }
+
+      h5 {
+        font-size: 1.25rem;
+      }
+
+      small,
+      .text_small {
+        font-size: 0.8rem;
+      }
+
+      /* custom styles */
+      a {
+        color: var(--gray-2);
+      }
+
+      nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 45ch;
+        margin-bottom: 16px;
+        height: 100px;
+      }
+
+      nav a {
+        font-size: 14px;
+        color: var(--gray-3);
+        text-decoration: none;
+        padding: 2px 8px;
+        border-radius: 6px;
+      }
+
+      nav a:hover {
+        color: var(--gray-0);
+        background: var(--gray-8);
+      }
+
+      .post-list {
+        margin: 0px;
+        padding: 0px;
+        list-style-type: none;
+      }
+
+      .post-link {
+        display: flex;
+        align-items: flex-end;
+        margin: 8px 0px;
+        padding: 8px;
+        border-bottom: 1px solid var(--gray-8);
+      }
+
+      .flex-2 {
+        flex: 2;
+      }
+
+      .post-link a {
+        flex: 2;
+        color: var(--gray-3);
+      }
+      .post-link a:hover {
+        color: var(--gray-1);
+      }
+
+      .post-link .date {
+        flex: 0.6;
+        color: var(--gray-4);
+        font-size: 12px;
+        margin-right: 8px;
+      }
+
+      footer {
+        color: var(--gray-3);
+      }
+
+      code,
+      kbd {
+        font-family: var(--font-mono);
+      }
+
+      code {
+        background: var(--gray-8);
+        padding: 2px 8px;
+        border-radius: 6px;
+      }
+
+      pre {
+        background: transparent !important;
+        font-family: var(--font-mono);
+      }
+
+      pre > code {
+        overflow-y: auto;
+        line-height: 1.75;
+        background: var(--gray-8);
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        height: 100%;
+        display: block;
+        white-space: pre-wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <Header active={url || "/"} />
+    {
+      frontmatter && frontmatter.title && (
+        <h1 class="font-semibold text-xl">{frontmatter.title}</h1>
+      )
+    }
+    <slot />
+  </body>
+</html>

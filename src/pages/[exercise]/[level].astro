@@ -1,0 +1,54 @@
+---
+import { useVariationLevels } from "../../hooks/use-variation-levels";
+
+import Layout from "../../layouts/Layout.astro";
+import { ExerciseStepRangeItem } from "../../components/step-range-item";
+import { useExercises } from "@hooks/use-exercises";
+import { useExerciseDetails } from "@hooks/use-exercise-details";
+
+export function getStaticPaths() {
+  const { exercises } = useExercises();
+
+  const all = [];
+
+  exercises.forEach((x) => {
+    const { variations } = useExerciseDetails(x.id);
+    variations.forEach((y) => {
+      all.push({
+        params: {
+          exercise: x.id,
+          level: y.level,
+        },
+      });
+    });
+  });
+
+  return all;
+}
+
+const { exercise, level } = Astro.params;
+const { levels } = useVariationLevels(exercise, level);
+---
+
+<Layout>
+  <div class="flex-1 bg-zinc-900 items-center">
+    <div
+      class="flex px-3 py-4 w-full flex-row border-b border-zinc-700 justify-between items-center"
+    >
+      <p class="text-zinc-600">Level</p>
+      <p class="text-zinc-600">Rep Range</p>
+    </div>
+    {
+      Object.keys(levels).length > 0 &&
+        Object.keys(levels).map((levelKey) => {
+          return (
+            <ExerciseStepRangeItem
+              title={levelKey.charAt(0).toUpperCase() + levelKey.slice(1)}
+              reps={levels[levelKey].reps}
+              sets={levels[levelKey].sets}
+            />
+          );
+        })
+    }
+  </div>
+</Layout>

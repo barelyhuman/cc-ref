@@ -1,0 +1,29 @@
+---
+import { PressableItem } from "../components/pressable";
+import { useExerciseDetails } from "../hooks/use-exercise-details";
+import { useExercises } from "../hooks/use-exercises";
+
+import Layout from "../layouts/Layout.astro";
+
+export function getStaticPaths() {
+  const { exercises } = useExercises();
+  return exercises.map((x) => ({
+    params: {
+      exercise: x.id,
+    },
+  }));
+}
+
+const { exercise } = Astro.params;
+const { variations } = useExerciseDetails(exercise);
+---
+
+<Layout>
+  <div class="flex-1 bg-zinc-900">
+    {
+      variations.map((item) => (
+        <PressableItem title={item.name} href={`/${exercise}/${item.level}`} />
+      ))
+    }
+  </div>
+</Layout>
