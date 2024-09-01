@@ -36,10 +36,11 @@ const { step, levels } = useVariationLevels(exercise, level);
       <h1>{step.name}</h1>
     </div>
     <div
-      class="flex px-3 py-4 w-full flex-row border-b border-zinc-700 justify-between items-center"
+      class="flex px-3 py-4 w-full gap-10 flex-row border-b border-zinc-700 justify-between items-center"
     >
-      <p class="text-zinc-400">Level</p>
-      <p class="text-zinc-400">Rep Range</p>
+      <p class="text-zinc-400 flex-1">Level</p>
+      <p class="text-zinc-400 flex-1">Rep Range</p>
+      <p class="text-zinc-400 flex-1"></p>
     </div>
     {
       Object.keys(levels).length > 0 &&

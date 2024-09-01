@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { WorkoutTimer } from "../components/workout-timer";
+import RepsAndSetContent from "../content/reps-and-sets.mdx";
+---
+
+<Layout>
+  <div class="flex-1 bg-zinc-900 items-center">
+    <div class="px-3 sm:px-safe py-4 text-xl font-bold text-zinc-200">
+      <h1>Rep x Set Calculator</h1>
+    </div>
+    <article class="prose prose-zinc prose-invert mb-10">
+      <RepsAndSetContent />
+    </article>
+    <WorkoutTimer client:only />
+  </div>
+</Layout>
