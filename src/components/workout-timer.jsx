@@ -4,8 +4,8 @@ import { signal, useSignal } from "@preact/signals";
 const MINUTE = 1000 * 60;
 
 const searchParams = new URLSearchParams(window.location.search);
-const reps = 10 || searchParams.get("reps");
-const sets = 2 || searchParams.get("sets");
+const reps = searchParams.get("reps");
+const sets = searchParams.get("sets");
 
 const overallSets = Array.from({
   length: sets,
