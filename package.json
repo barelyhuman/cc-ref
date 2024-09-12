@@ -8,6 +8,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "fix": "prettier --write .",
     "astro": "astro"
   },
   "dependencies": {
@@ -20,8 +21,12 @@
     "preact": "^10.23.2",
     "tailwindcss": "^3.4.11"
   },
+  "prettier": "@barelyhuman/prettier-config",
   "devDependencies": {
+    "@barelyhuman/prettier-config": "^1.1.0",
+    "prettier": "^3.3.3",
     "tailwindcss-safe-area": "^0.6.0",
     "typescript": "^5.6.2"
-  }
+  },
+  "packageManager": "yarn@4.4.1"
 }

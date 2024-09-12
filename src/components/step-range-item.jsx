@@ -1,7 +1,7 @@
 export function ExerciseStepRangeItem({ title, reps, sets }) {
-  const trySP = new URLSearchParams();
-  trySP.set("reps", reps);
-  trySP.set("sets", sets);
+  const trySP = new URLSearchParams()
+  trySP.set('reps', reps)
+  trySP.set('sets', sets)
   return (
     <div className="flex px-3 py-4 w-full flex-row gap-10 justify-between items-center">
       <p className="text-zinc-500 flex-1">{title}</p>
@@ -17,9 +17,9 @@ export function ExerciseStepRangeItem({ title, reps, sets }) {
             <a href={`/try?${trySP.toString()}`} class="block w-full">
               Try?
             </a>
-          </span>{" "}
+          </span>{' '}
         </button>
       </div>
     </div>
-  );
+  )
 }

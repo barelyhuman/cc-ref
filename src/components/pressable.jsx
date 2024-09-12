@@ -5,5 +5,5 @@ export function PressableItem({ href, title }) {
         <p className="font-title text-lg text-zinc-400">{title}</p>
       </div>
     </a>
-  );
+  )
 }

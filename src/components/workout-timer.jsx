@@ -1,47 +1,47 @@
-import { useState, useEffect } from "preact/hooks";
-import { signal, useSignal } from "@preact/signals";
+import { useState, useEffect } from 'preact/hooks'
+import { signal, useSignal } from '@preact/signals'
 
-const MINUTE = 1000 * 60;
+const MINUTE = 1000 * 60
 
-const searchParams = new URLSearchParams(window.location.search);
-const reps = searchParams.get("reps");
-const sets = searchParams.get("sets");
+const searchParams = new URLSearchParams(window.location.search)
+const reps = searchParams.get('reps')
+const sets = searchParams.get('sets')
 
 const overallSets = Array.from({
   length: sets,
-}).fill(reps);
-const activeSet = signal(0);
+}).fill(reps)
+const activeSet = signal(0)
 const subsets = Array.from({
   length: sets,
 })
   .fill(0)
-  .map((d) => signal([]));
+  .map(d => signal([]))
 
 export const Timer = ({ milliseconds = 0, stepper = 1000 }) => {
-  const [remaining, setRemaining] = useState(milliseconds);
+  const [remaining, setRemaining] = useState(milliseconds)
 
   useEffect(() => {
     let id = setInterval(() => {
       if (milliseconds <= 0) {
-        clearInterval(id);
+        clearInterval(id)
       }
-      setRemaining((d) => d - stepper);
-    }, stepper);
+      setRemaining(d => d - stepper)
+    }, stepper)
 
     return () => {
-      clearInterval(id);
-    };
-  }, []);
+      clearInterval(id)
+    }
+  }, [])
 
-  return <p>{remaining}</p>;
-};
+  return <p>{remaining}</p>
+}
 
 export const WorkoutTimer = () => {
   return (
     <div class="flex flex-col gap-10">
       <ul class="flex flex-col gap-2">
         {overallSets.map((repCount, i) => {
-          const isCurrentSet = activeSet.value === i;
+          const isCurrentSet = activeSet.value === i
           return (
             <li>
               <SetRunView
@@ -49,13 +49,13 @@ export const WorkoutTimer = () => {
                 count={repCount}
                 isActive={isCurrentSet}
                 addSubset={(required, remainingCount) => {
-                  activeSet.value = i;
-                  const clone = subsets[i].value.slice();
-                  clone[0] = remainingCount;
-                  subsets[i].value = clone;
+                  activeSet.value = i
+                  const clone = subsets[i].value.slice()
+                  clone[0] = remainingCount
+                  subsets[i].value = clone
                 }}
                 onComplete={() => {
-                  activeSet.value += 1;
+                  activeSet.value += 1
                 }}
               />
               <ul class="flex gap-2 flex-col my-1">
@@ -70,39 +70,39 @@ export const WorkoutTimer = () => {
                           isActive={isCurrentSet}
                           addSubset={(required, remainingCount) => {
                             if (remainingCount <= 0) {
-                              activeSet.value += 1;
+                              activeSet.value += 1
                             }
                             subsets[i].value =
-                              subsets[i].value.concat(remainingCount);
+                              subsets[i].value.concat(remainingCount)
                           }}
                           onComplete={() => {
-                            activeSet.value += 1;
+                            activeSet.value += 1
                           }}
                         />
                       </li>
                     ))}
               </ul>
             </li>
-          );
+          )
         })}
       </ul>
     </div>
-  );
-};
+  )
+}
 
 const SetRunView = ({
-  prefix = "Set",
+  prefix = 'Set',
   set,
   count: requiredCount,
   isActive,
   onComplete,
   addSubset,
 }) => {
-  const count = useSignal("");
+  const count = useSignal('')
   return (
     <div
       class={`flex justify-between border p-4 border-zinc-600 rounded-md ${
-        isActive ? "border-zinc-100" : ""
+        isActive ? 'border-zinc-100' : ''
       }`}
     >
       <p>
@@ -111,20 +111,20 @@ const SetRunView = ({
       <input
         placeholder="Completed reps"
         class={`shadow-sm p-1 bg-transparent rounded-md px-2 shadow-white border border-zinc-600 ${
-          isActive ? "border-zinc-100" : ""
+          isActive ? 'border-zinc-100' : ''
         }`}
         value={count}
-        onChange={(e) => {
-          const asNumber = Number(e.target.value);
-          count.value = asNumber;
+        onChange={e => {
+          const asNumber = Number(e.target.value)
+          count.value = asNumber
           if (e.target.value < requiredCount) {
-            addSubset(requiredCount, requiredCount - asNumber);
+            addSubset(requiredCount, requiredCount - asNumber)
           }
           if (e.target.value >= requiredCount) {
-            onComplete();
+            onComplete()
           }
         }}
       />
     </div>
-  );
-};
+  )
+}

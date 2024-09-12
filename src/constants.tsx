@@ -1,7 +1,7 @@
 export const MENUS = [
   {
-    name: "Exercises",
-    href: "/",
+    name: 'Exercises',
+    href: '/',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -23,8 +23,8 @@ export const MENUS = [
     ),
   },
   {
-    name: "Tips",
-    href: "/tips",
+    name: 'Tips',
+    href: '/tips',
     svg: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -45,4 +45,4 @@ export const MENUS = [
       </svg>
     ),
   },
-];
+]

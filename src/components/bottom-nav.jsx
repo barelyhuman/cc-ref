@@ -1,4 +1,4 @@
-import { MENUS } from "../constants";
+import { MENUS } from '../constants'
 
 export function BottomNav({ active }) {
   return (
@@ -10,18 +10,18 @@ export function BottomNav({ active }) {
               <a
                 className={`flex h-full w-full flex-col items-center justify-center space-y-1 ${
                   active === href
-                    ? "text-indigo-400"
-                    : "text-zinc-400 hover:text-zinc-50"
+                    ? 'text-indigo-400'
+                    : 'text-zinc-400 hover:text-zinc-50'
                 }`}
                 href={href}
               >
                 {svg}
                 <span className="text-xs text-inherit">{name}</span>
               </a>
-            );
+            )
           })}
         </div>
       </nav>
     </div>
-  );
+  )
 }

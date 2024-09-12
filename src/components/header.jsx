@@ -1,6 +1,6 @@
-import { MENUS } from "../constants";
+import { MENUS } from '../constants'
 
-export function Header({ active = "" }) {
+export function Header({ active = '' }) {
   return (
     <div className="fixed top-0 left-0 z-20 w-full bg-zinc-900 pt-safe">
       <header className="border-b px-safe border-zinc-800 bg-zinc-900">
@@ -11,15 +11,15 @@ export function Header({ active = "" }) {
           <nav className="flex items-center space-x-6">
             <div className="hidden sm:block">
               <div className="flex items-center space-x-6">
-                {MENUS.map((menu) => (
+                {MENUS.map(menu => (
                   <div>
                     <a
                       href={menu.href}
                       class={
-                        "text-sm" +
+                        'text-sm' +
                         (menu.href === active
-                          ? " text-indigo-400"
-                          : " text-zinc-400 hover:text-zinc-50")
+                          ? ' text-indigo-400'
+                          : ' text-zinc-400 hover:text-zinc-50')
                       }
                     >
                       {menu.name}
@@ -32,5 +32,5 @@ export function Header({ active = "" }) {
         </div>
       </header>
     </div>
-  );
+  )
 }
