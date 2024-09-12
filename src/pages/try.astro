@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { WorkoutTimer } from "../components/workout-timer";
-import RepsAndSetContent from "../content/reps-and-sets.mdx";
+import RepsAndSetContent from "../content/tips/reps-and-sets.mdx";
 ---
 
 <Layout>
@@ -12,6 +12,6 @@ import RepsAndSetContent from "../content/reps-and-sets.mdx";
     <article class="prose prose-zinc prose-invert mb-10">
       <RepsAndSetContent />
     </article>
-    <WorkoutTimer client:only />
+    <WorkoutTimer client:only="preact" />
   </div>
 </Layout>
